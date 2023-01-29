@@ -17,4 +17,20 @@ scalar DateTime
 
 type Query {
   roles: [Role!]!
+  findOne(id: String!): Role!
+}
+
+type Mutation {
+  createRole(role: CreateRoleInput!): Role!
+  updateRole(role: UpdateRoleInput!): Role!
+  removeRole(id: String!): Role!
+}
+
+input CreateRoleInput {
+  roleType: String!
+}
+
+input UpdateRoleInput {
+  id: Float!
+  roleType: String!
 }

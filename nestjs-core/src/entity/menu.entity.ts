@@ -1,5 +1,4 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { first } from "rxjs";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { RoleMenu } from "./role-menu.entity";
 
@@ -31,7 +30,7 @@ export class Menu {
     @Field()
     public createDate:Date;
 
-    @Column()
+    @Column({nullable:true})
     @Field()
     public updateDate:Date;
 

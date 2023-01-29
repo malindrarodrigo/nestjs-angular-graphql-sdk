@@ -22,7 +22,7 @@ export class Permission {
     @Field()
     public createDate:Date;
 
-    @Column()
+    @Column({nullable:true})
     @Field()
     public updateDate:Date;
 

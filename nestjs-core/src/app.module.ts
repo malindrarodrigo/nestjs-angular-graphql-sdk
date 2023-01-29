@@ -11,13 +11,15 @@ import { Menu } from './entity/menu.entity';
 import { Permission } from './entity/permission.entity';
 import { RolePermission } from './entity/role-permission.entity';
 import { RoleMenu } from './entity/role-menu.entity';
+import { typeOrmAsyncConfig } from './config/typeorm.config';
 
-@Module({
+@Module({ 
   imports: [
     GraphQLModule.forRoot ({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      driver:ApolloDriver,
+      driver:ApolloDriver, 
     }),
+   // TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
