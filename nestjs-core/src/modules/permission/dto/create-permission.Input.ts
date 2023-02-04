@@ -7,18 +7,9 @@ export class CreatePermissionInput {
     @Field()
     public permissionId:number;
 
-    @Field(()=>CreateMenuInput)
-    public menuId:CreateMenuInput;
+    @Field(()=>CreateMenuInput,{nullable:true})
+    public menuId?:CreateMenuInput;
 
-    @Field()
-    public permissionName:string;
-
-    @Field()
-    public createDate:Date;
-
-    @Field()
-    public status:number;
-
-    @Field()
-    public updateDate:Date;
+    @Field({nullable:true})
+    public permissionName?:string;
 }

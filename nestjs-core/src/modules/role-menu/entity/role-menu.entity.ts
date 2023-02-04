@@ -23,9 +23,9 @@ export class RoleMenu {
     @Field()
     public updateDate:Date;
 
-    @ManyToOne(()=>Menu,(menuId:Menu)=>menuId.roleMenu)
+    @ManyToOne(()=>Menu,(menuId:Menu)=>menuId.roleMenu,{onDelete:'CASCADE'})
     public menu:Menu;
 
-    @ManyToOne(()=>Role,(roleId:Role)=>roleId.roleMenu)
+    @ManyToOne(()=>Role,(roleId:Role)=>roleId.roleMenu,{onDelete:'CASCADE'})
     public role:Role;
 }

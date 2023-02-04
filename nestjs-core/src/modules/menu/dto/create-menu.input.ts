@@ -6,16 +6,16 @@ export class CreateMenuInput {
     @Field()
     public menuId:number;
 
-    @Field()
-    public icon:string;
+    @Field({nullable:true})
+    public icon?:string;
 
-    @Field()
-    public menuName:string;
+    @Field({nullable:true})
+    public menuName?:string;
 
-    @Field()
-    public parentId:number;
+    @Field({nullable:true})
+    public parentId?:number;
 
-    @Field()
-    public url:string;
+    @Field({nullable:true})
+    public url?:string;
 
 }

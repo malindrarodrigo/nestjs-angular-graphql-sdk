@@ -23,9 +23,9 @@ export class RolePermission {
   @Field()
   public updateDate: Date;
 
-  @ManyToOne(()=>Role,(roleId:Role)=>roleId.roleMenu)
+  @ManyToOne(()=>Role,(roleId:Role)=>roleId.roleMenu,{onDelete:'CASCADE'})
   public role:Role;
 
-  @ManyToOne(()=>Permission,(permissionId:Permission)=>permissionId.rolePermission)
+  @ManyToOne(()=>Permission,(permissionId:Permission)=>permissionId.rolePermission,{onDelete:'CASCADE'})
   public permission:Permission;
 }

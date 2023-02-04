@@ -26,9 +26,9 @@ export class Role{
     @Field()
     public updateDate:Date;
 
-    @OneToMany(()=>RoleMenu,(roleMenu:RoleMenu)=>roleMenu.role)
+    @OneToMany(()=>RoleMenu,(roleMenu:RoleMenu)=>roleMenu.role,{cascade:true})
     public roleMenu:RoleMenu[];
 
-    @OneToMany(()=>RolePermission,(rolePermission:RolePermission)=>rolePermission.role)
+    @OneToMany(()=>RolePermission,(rolePermission:RolePermission)=>rolePermission.role,{cascade:true})
     public rolePermission:RolePermission[];
 }

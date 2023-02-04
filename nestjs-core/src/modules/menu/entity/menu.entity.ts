@@ -1,6 +1,7 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { RoleMenu } from "src/modules/role-menu/entity/role-menu.entity"; 
+import { Permission } from "src/modules/permission/entity/permission.entity";
 
 @Entity('menu')
 @ObjectType()
@@ -32,12 +33,15 @@ export class Menu {
 
     @Column({nullable:true})
     @Field()
-    public updateDate:Date;
+    public updateDate:Date; 
 
     @Column()
     @Field()
-    public url:string;
+    public url:string; 
 
-    @OneToMany(()=>RoleMenu,(roleMenu:RoleMenu)=>roleMenu.menu)
+    @OneToMany(()=>RoleMenu,(roleMenu:RoleMenu)=>roleMenu.menu,{cascade:true})
     public roleMenu:RoleMenu[];
+
+    @OneToMany(()=>Permission,(permission:Permission)=>permission.menu,{cascade:true})
+    public permission:Permission[];
 }

@@ -6,31 +6,30 @@ import { RolesService } from 'src/modules/roles/service/roles.service';
 
 @Resolver(() => Role)
 export class RolesResolver {
-    constructor(private roleService:RolesService){}
+  constructor(private roleService: RolesService) {}
 
-    @Query(()=>[Role])
-    roles():Promise<Role[]>{
-        return this.roleService.findAll();
-    }
+  @Query(() => [Role])
+  roles(): Promise<Role[]> {
+    return this.roleService.findAll();
+  }
 
-    @Mutation(()=>Role)
-    createRole(@Args ('role')role:CreateRoleInput){
-        return this.roleService.create(role);
-    }
+  @Mutation(() => Role)
+  createRole(@Args('role') role: CreateRoleInput) {
+    return this.roleService.create(role);
+  }
 
-    @Query(()=>Role)
-    findOne(@Args('id')id:string){
-        return this.roleService.findOne(id);
-    }
+  @Query(() => Role)
+  findOne(@Args('id') id: number) {
+    return this.roleService.findOne(id);
+  }
 
-    @Mutation(()=>Role)
-    updateRole(@Args ('role')role:UpdateRoleInput){
-        return this.roleService.update(role);
-    }
+  @Mutation(() => Role)
+  updateRole(@Args('role') role: UpdateRoleInput) {
+    return this.roleService.update(role);
+  }
 
-    @Mutation(()=>Role)
-    removeRole(@Args('id')id:string){
-        return this.roleService.remove(id);
-    }
-
+  @Mutation(() => Role)
+  removeRole(@Args('id') id: number) {
+    return this.roleService.remove(id);
+  }
 }

@@ -1,6 +1,7 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { RolePermission } from "src/modules/role-permission/entity/role-permission.entity"; 
+import { Menu } from "src/modules/menu/entity/menu.entity";
 
 @Entity('permission')
 @ObjectType()
@@ -26,6 +27,9 @@ export class Permission {
     @Field()
     public updateDate:Date;
 
-    @OneToMany(()=>RolePermission,(rolePermission:RolePermission)=>rolePermission.permission)
+    @ManyToOne(()=>Menu,(menu:Menu)=>menu.permission,{onDelete:'CASCADE'})
+    public menu:Menu; 
+
+    @OneToMany(()=>RolePermission,(rolePermission:RolePermission)=>rolePermission.permission,{cascade:true})
     public rolePermission:RolePermission[];
 }

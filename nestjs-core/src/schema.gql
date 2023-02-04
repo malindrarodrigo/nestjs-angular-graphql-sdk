@@ -3,20 +3,17 @@
 # ------------------------------------------------------
 
 input CreateMenuInput {
-  icon: String!
+  icon: String
   menuId: Float!
-  menuName: String!
-  parentId: Float!
-  url: String!
+  menuName: String
+  parentId: Float
+  url: String
 }
 
 input CreatePermissionInput {
-  createDate: DateTime!
-  menuId: CreateMenuInput!
+  menuId: CreateMenuInput
   permissionId: Float!
-  permissionName: String!
-  status: Float!
-  updateDate: DateTime!
+  permissionName: String
 }
 
 input CreateRoleInput {
@@ -26,21 +23,13 @@ input CreateRoleInput {
 }
 
 input CreateRoleMenuInput {
-  createDate: DateTime!
-  menuId: CreateMenuInput!
-  roleId: CreateRoleInput!
-  roleMenuId: Float!
-  status: Float!
-  updateDate: DateTime!
+  menu: CreateMenuInput!
+  role: CreateRoleInput
 }
 
 input CreateRolePermissionInput {
-  createDate: DateTime!
-  permissionId: CreatePermissionInput!
-  roleId: CreateRoleInput!
-  rolePermissionId: Float!
-  status: Float!
-  updateDate: DateTime!
+  permission: CreatePermissionInput!
+  role: CreateRoleInput
 }
 
 """
@@ -50,12 +39,12 @@ scalar DateTime
 
 type Mutation {
   createRole(role: CreateRoleInput!): Role!
-  removeRole(id: String!): Role!
+  removeRole(id: Float!): Role!
   updateRole(role: UpdateRoleInput!): Role!
 }
 
 type Query {
-  findOne(id: String!): Role!
+  findOne(id: Float!): Role!
   roles: [Role!]!
 }
 

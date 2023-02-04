@@ -5,23 +5,9 @@ import { CreateRoleInput } from "src/modules/roles/dto/create-role.input";
 @InputType()
 export class CreateRoleMenuInput {
 
-    @Field()
-    public roleMenuId:number;
-
     @Field(()=>CreateMenuInput)
-    public menuId:CreateMenuInput;
+    public menu:CreateMenuInput;
     
-    @Field(()=>CreateRoleInput)
-    public roleId:CreateRoleInput;
-
-    @Field()
-    public createDate:Date;
-
-    @Field()
-    public status:number;
-
-    @Field()
-    public updateDate:Date;
-
-
+    @Field(()=>CreateRoleInput,{nullable:true})
+    public role?:CreateRoleInput;
 }
