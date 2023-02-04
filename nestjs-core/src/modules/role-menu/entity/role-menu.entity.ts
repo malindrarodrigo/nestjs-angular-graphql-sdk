@@ -1,14 +1,14 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Menu } from "./menu.entity";
-import { Role } from "./role.entity";
+import { Menu } from "src/modules/menu/entity/menu.entity";
+import { Role } from "../../roles/entity/role.entity";
 
 @Entity('role_menu')
 @ObjectType()
 export class RoleMenu {
 
     @PrimaryGeneratedColumn()
-    @Field(type=>Int)
+    @Field(()=>Int)
     public id:number;
 
     @Column()

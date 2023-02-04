@@ -1,14 +1,14 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Permission } from './permission.entity';
-import { Role } from './role.entity';
+import { Permission } from 'src/modules/permission/entity/permission.entity'; 
+import { Role } from '../../roles/entity/role.entity';
 
 @Entity('role_permission')
 @ObjectType()
 export class RolePermission {
 
   @PrimaryGeneratedColumn()
-  @Field((type) => Int)
+  @Field(() => Int)
   public id: number;
 
   @Column()

@@ -4,33 +4,20 @@ import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { RolesModule } from './modules/roles/roles.module';
-import { ApolloDriver } from '@nestjs/apollo';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Role } from './entity/role.entity';
-import { Menu } from './entity/menu.entity';
-import { Permission } from './entity/permission.entity';
-import { RolePermission } from './entity/role-permission.entity';
-import { RoleMenu } from './entity/role-menu.entity';
 import { typeOrmAsyncConfig } from './config/typeorm.config';
+import { ConfigModule } from '@nestjs/config';
 
-@Module({ 
+@Module({
   imports: [
-    GraphQLModule.forRoot ({
+    ConfigModule.forRoot({ envFilePath: '.env', isGlobal: true }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      driver:ApolloDriver, 
+      sortSchema: true,
     }),
-   // TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root1234',
-      database: 'nest_role_management',
-      entities: [Menu,Role,Permission,RolePermission,RoleMenu],
-      synchronize: true,
-    }),
-    
+    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     RolesModule,
   ],
   controllers: [AppController],

@@ -2,11 +2,44 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Role {
-  id: Int!
-  roleType: String!
-  status: Float!
+input CreateMenuInput {
+  icon: String!
+  menuId: Float!
+  menuName: String!
+  parentId: Float!
+  url: String!
+}
+
+input CreatePermissionInput {
   createDate: DateTime!
+  menuId: CreateMenuInput!
+  permissionId: Float!
+  permissionName: String!
+  status: Float!
+  updateDate: DateTime!
+}
+
+input CreateRoleInput {
+  roleMenuList: [CreateRoleMenuInput!]! = []
+  rolePermissionList: [CreateRolePermissionInput!]! = []
+  roleType: String!
+}
+
+input CreateRoleMenuInput {
+  createDate: DateTime!
+  menuId: CreateMenuInput!
+  roleId: CreateRoleInput!
+  roleMenuId: Float!
+  status: Float!
+  updateDate: DateTime!
+}
+
+input CreateRolePermissionInput {
+  createDate: DateTime!
+  permissionId: CreatePermissionInput!
+  roleId: CreateRoleInput!
+  rolePermissionId: Float!
+  status: Float!
   updateDate: DateTime!
 }
 
@@ -15,19 +48,23 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type Query {
-  roles: [Role!]!
-  findOne(id: String!): Role!
-}
-
 type Mutation {
   createRole(role: CreateRoleInput!): Role!
-  updateRole(role: UpdateRoleInput!): Role!
   removeRole(id: String!): Role!
+  updateRole(role: UpdateRoleInput!): Role!
 }
 
-input CreateRoleInput {
+type Query {
+  findOne(id: String!): Role!
+  roles: [Role!]!
+}
+
+type Role {
+  createDate: DateTime!
+  id: Int!
   roleType: String!
+  status: Float!
+  updateDate: DateTime!
 }
 
 input UpdateRoleInput {

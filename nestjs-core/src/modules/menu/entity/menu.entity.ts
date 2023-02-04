@@ -1,18 +1,26 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { RolePermission } from "./role-permission.entity";
+import { RoleMenu } from "src/modules/role-menu/entity/role-menu.entity"; 
 
-@Entity('permission')
+@Entity('menu')
 @ObjectType()
-export class Permission {
+export class Menu {
 
     @PrimaryGeneratedColumn()
-    @Field(type=>Int)
+    @Field(()=>Int)
     public id:number;
 
     @Column()
     @Field()
-    public permissionName:string;
+    public icon:string;
+
+    @Column()
+    @Field()
+    public menuName:string;
+
+    @Column()
+    @Field()
+    public parentId:number;
 
     @Column()
     @Field()
@@ -26,6 +34,10 @@ export class Permission {
     @Field()
     public updateDate:Date;
 
-    @OneToMany(()=>RolePermission,(rolePermission:RolePermission)=>rolePermission.permission)
-    public rolePermission:RolePermission[];
+    @Column()
+    @Field()
+    public url:string;
+
+    @OneToMany(()=>RoleMenu,(roleMenu:RoleMenu)=>roleMenu.menu)
+    public roleMenu:RoleMenu[];
 }
