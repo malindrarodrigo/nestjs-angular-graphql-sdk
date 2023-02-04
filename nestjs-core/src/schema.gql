@@ -1,0 +1,62 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateMenuInput {
+  icon: String
+  menuId: Float!
+  menuName: String
+  parentId: Float
+  url: String
+}
+
+input CreatePermissionInput {
+  menuId: CreateMenuInput
+  permissionId: Float!
+  permissionName: String
+}
+
+input CreateRoleInput {
+  roleMenuList: [CreateRoleMenuInput!]! = []
+  rolePermissionList: [CreateRolePermissionInput!]! = []
+  roleType: String!
+}
+
+input CreateRoleMenuInput {
+  menu: CreateMenuInput!
+  role: CreateRoleInput
+}
+
+input CreateRolePermissionInput {
+  permission: CreatePermissionInput!
+  role: CreateRoleInput
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createRole(role: CreateRoleInput!): Role!
+  removeRole(id: Float!): Role!
+  updateRole(role: UpdateRoleInput!): Role!
+}
+
+type Query {
+  findOne(id: Float!): Role!
+  roles: [Role!]!
+}
+
+type Role {
+  createDate: DateTime!
+  id: Int!
+  roleType: String!
+  status: Float!
+  updateDate: DateTime!
+}
+
+input UpdateRoleInput {
+  id: Float!
+  roleType: String!
+}
