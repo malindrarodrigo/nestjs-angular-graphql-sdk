@@ -16,6 +16,10 @@ export class User {
   @Field()
   password: string;
 
+  @Column({ default: '' })
+  @Field()
+  refresh_token: string;
+
   @CreateDateColumn()
   @Field()
   createdAt: Date;

@@ -7,11 +7,12 @@ import { UsersModule } from 'src/users/users.module';
 import { JwtModule } from '@nestjs/jwt/dist';
 import { JwtStratrgy } from './jwt.strategy';
 import { jwtConfig } from 'src/config/jwt.config';
+import { RefreshTokenStrategy } from './refresh-token.strategy';
 
 @Module({
   imports: [PassportModule, UsersModule,
     JwtModule.registerAsync(jwtConfig)
   ],
-  providers: [AuthService, AuthResolver, LocalStratrgy, JwtStratrgy]
+  providers: [AuthService, AuthResolver, LocalStratrgy, JwtStratrgy,RefreshTokenStrategy]
 })
 export class AuthModule { }

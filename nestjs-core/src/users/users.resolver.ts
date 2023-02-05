@@ -18,4 +18,6 @@ export class UsersResolver {
   findOne(@Args('username') username: string) {
     return this.usersService.findOne(username);
   }
+
+  
 }

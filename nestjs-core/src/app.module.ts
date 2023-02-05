@@ -7,8 +7,7 @@ import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './users/entities/user.entity';
+import { TypeOrmModule } from '@nestjs/typeorm'; 
 import { dbConifg } from './config/db.config';
 
 @Module({
