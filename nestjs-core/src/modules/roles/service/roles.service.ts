@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { async } from 'rxjs';
 import { Menu } from 'src/modules/menu/entity/menu.entity';
 import { Permission } from 'src/modules/permission/entity/permission.entity';
 import { CreateRoleMenuInput } from 'src/modules/role-menu/dto/create-role-menu.input';
@@ -34,7 +35,7 @@ export class RolesService {
     await this.roleRepo.save(roleEntity);
 
     //Save Role-Menu Entity
-    role.roleMenuList.map(async (roleMenu: CreateRoleMenuInput) => {
+    role.roleMenuList.forEach(async (roleMenu: CreateRoleMenuInput) => {
       let menuEntity =await this.menuRepo.findOne({
         where: { id: roleMenu.menu.menuId },
       });
@@ -52,7 +53,7 @@ export class RolesService {
     });
 
     //Save Role-Permission Entity
-    role.rolePermissionList.map(
+    role.rolePermissionList.forEach(
       async (rolePermission: CreateRolePermissionInput) => {
         let permissionEntity = await this.permissionRepo.findOne({
           where: { id: rolePermission.permission.permissionId },
