@@ -1,0 +1,39 @@
+<div style="overflow: hidden;margin: 0;">
+  <div class="shape-one"></div>
+  <div class="logging-container">
+    <div class="image-container">
+      <img class="logging-image" src="../../assets/register-img.png" alt="logging image" />
+    </div>
+    <div class="detail-container">
+      <div class="logo">
+        <img class="logo-image" src="https://uxwing.com/wp-content/themes/uxwing/download/editing-user-action/signup-icon.png" alt="logo" />
+      </div>
+      <div class="logo-description">
+        <h1 style="text-align: center; margin: 0;font-family: sans-serif;">Sign Up</h1>
+        <!-- <p style="text-align: center; margin: 0;font-family: sans-serif; font-weight: bold; font-size: 30px;">Login</p> -->
+        <p style="font-size: 16px; text-align: center; font-family: sans-serif;">
+          Access Exclusive Features
+        </p>
+      </div>
+      <div class="text-field-container">
+        <form>
+          <div class="form-field">
+            <input type="text" placeholder="Username" >
+          </div>
+          <div class="form-field">
+            <input type="email" placeholder="Email">
+          </div>
+          <div class="form-field">
+            <input type="password" placeholder="Password">
+          </div>
+          <div class="form-field">
+            <input type="password" placeholder="Confirm Password">
+          </div>
+          <button class="login-btn" (click)="onSignUp()">Create</button>
+         
+          <div class="create-btn" (click)="onAlreadyHaveAccount()">already have an account</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

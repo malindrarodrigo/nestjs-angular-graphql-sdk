@@ -1,0 +1,41 @@
+<div style="overflow: hidden;margin: 0;">
+  <div class="shape-one"></div>
+  <div class="logging-container">
+    <div class="image-container">
+      <img
+        class="logging-image"
+        src="../../assets/loggin-image.png"
+        alt="logging image"
+      />
+    </div>
+    <div class="detail-container">
+      <div class="logo">
+        <img
+          class="logo-image"
+          src="https://cdn-icons-png.flaticon.com/512/47/47774.png"
+          alt="logo"
+        />
+      </div>
+      <div class="logo-description">
+        <h1 style="text-align: center; margin: 0;font-family: sans-serif;">Login</h1>
+        <!-- <p style="text-align: center; margin: 0;font-family: sans-serif; font-weight: bold; font-size: 30px;">Login</p> -->
+        <p style="font-size: 16px; text-align: center; font-family: sans-serif;">
+          Please Log in with your account
+        </p>
+      </div>
+      <div class="text-field-container">
+        <form>
+          <div class="form-field">
+            <input type="text" placeholder="Username">
+          </div>
+          <div class="form-field">
+            <input type="password" placeholder="Password">
+          </div>
+          <button class="login-btn" (click)="OnLogin()" >LOGIN</button>
+          <!-- <button class="create-btn" (click)="onCreateAccount()">CREATE ACCOUNT</button> -->
+          <div class="create-btn" (click)="onCreateAccount()">CREATE ACCOUNT</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

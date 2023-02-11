@@ -1,0 +1,128 @@
+.logging-container{
+  position: absolute;
+  width: 800px;
+  height: 500px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+box-shadow: 1px 1px 3px 1px #888888;
+background-color: white;
+}
+
+.image-container{
+  width: 45%;
+  height: 100%;
+  border: 1px solid gray;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.detail-container{
+  width: 55%;
+  height: 100%;
+  border: 1px solid gray;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+
+}
+.logging-image{
+  width: 100%;
+  height: 50%;
+
+}
+
+.logo{
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.logo-description{
+  width: 100%;
+  height: 15%;
+
+}
+
+.text-field-container{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-image{
+  height: 80%;
+
+}
+form {
+  width: 80%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.form-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+ 
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(70, 139, 161);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.create-btn:hover{
+  cursor: pointer;
+}
+.create-btn{
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background-color: transparent;
+  color: blue;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.shape-one{
+  background-color: orange;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  -webkit-clip-path: polygon(0 66%, 100% 30%, 100% 100%, 0 100%);
+clip-path: polygon(0 66%, 100% 30%, 100% 100%, 0 100%);
+}
