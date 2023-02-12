@@ -1,0 +1,17 @@
+FROM node:18 as base
+
+WORKDIR /usr/src/app
+
+RUN npm -v
+
+RUN npm i -g npm@8.11.0
+
+RUN npm -v
+
+COPY package.json ./
+
+RUN npm i
+
+RUN npm i -g rimraf
+
+RUN rm -f package.json
