@@ -56,7 +56,35 @@ type Role {
   updateDate: DateTime!
 }
 
+input UpdateMenuInput {
+  icon: String
+  menuId: Float!
+  menuName: String
+  parentId: Float
+  url: String
+}
+
+input UpdatePermissionInput {
+  menuId: UpdateMenuInput
+  permissionId: Float!
+  permissionName: String
+}
+
 input UpdateRoleInput {
   id: Float!
+  roleMenuList: [UpdateRoleMenuInput!]! = []
+  rolePermissionList: [UpdateRolePermissionInput!]! = []
   roleType: String!
+}
+
+input UpdateRoleMenuInput {
+  id: Float!
+  menu: UpdateMenuInput
+  role: UpdateRoleInput
+}
+
+input UpdateRolePermissionInput {
+  id: Float!
+  permission: UpdatePermissionInput
+  role: UpdateRoleInput
 }
