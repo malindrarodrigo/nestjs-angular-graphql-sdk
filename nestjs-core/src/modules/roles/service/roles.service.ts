@@ -26,7 +26,7 @@ export class RolesService {
   ) {}
 
   async findAll(): Promise<Role[]> {
-    return this.roleRepo.find();
+    return this.roleRepo.find({where:{status:1}});
   }
 
   async create(role: CreateRoleInput): Promise<Role> {
@@ -39,7 +39,7 @@ export class RolesService {
     //Save Role-Menu Entity
     role.roleMenuList.forEach(async (roleMenu: CreateRoleMenuInput) => {
       let menuEntity = await this.menuRepo.findOne({
-        where: { id: roleMenu.menu.menuId, status:1 },
+        where: { id: roleMenu.menu.menuId, status: 1 },
       });
 
       if (menuEntity) {
@@ -58,7 +58,7 @@ export class RolesService {
     role.rolePermissionList.forEach(
       async (rolePermission: CreateRolePermissionInput) => {
         let permissionEntity = await this.permissionRepo.findOne({
-          where: { id: rolePermission.permission.permissionId, status:1 },
+          where: { id: rolePermission.permission.permissionId, status: 1 },
         });
 
         if (permissionEntity) {
@@ -79,12 +79,14 @@ export class RolesService {
   }
 
   async findOne(id: number): Promise<Role> {
-    return await this.roleRepo.findOne({ where: { id: id, status:1 } });
+    return await this.roleRepo.findOne({ where: { id: id, status: 1 } });
   }
 
   async update(updateRole: UpdateRoleInput) {
     let role = this.roleRepo.create(updateRole);
-    let roleEntity = await this.roleRepo.findOne({ where: { id: role.id , status:1} });
+    let roleEntity = await this.roleRepo.findOne({
+      where: { id: role.id, status: 1 },
+    });
 
     if (roleEntity) {
       //Update Role Entity
@@ -95,7 +97,7 @@ export class RolesService {
       updateRole.roleMenuList.forEach(async (roleMenu: UpdateRoleMenuInput) => {
         if (roleMenu.id === 0) {
           let menuEntity = await this.menuRepo.findOne({
-            where: { id: roleMenu.menu.menuId, status:1 }
+            where: { id: roleMenu.menu.menuId, status: 1 },
           });
 
           //Save New RoleMenu entity
@@ -108,7 +110,7 @@ export class RolesService {
         } else {
           //Set Status as 0 in Existing RoleMenu Entity
           let roleMenuEntity = await this.roleMenuRepo.findOne({
-            where: { id: roleMenu.id , status:1},
+            where: { id: roleMenu.id, status: 1 },
           });
           roleMenuEntity.status = 0;
           roleMenuEntity.updateDate = new Date();
@@ -120,7 +122,7 @@ export class RolesService {
         async (rolePermission: UpdateRolePermissionInput) => {
           if (rolePermission.id === 0) {
             let permissionEntity = await this.permissionRepo.findOne({
-              where: { id: rolePermission.permission.permissionId, status:1 },
+              where: { id: rolePermission.permission.permissionId, status: 1 },
             });
 
             //Save New RolePermission entity
@@ -134,7 +136,7 @@ export class RolesService {
           } else {
             //Set Status as 0 in Existing RolePermission Entity
             let rolePermissionEntity = await this.rolePermissionRepo.findOne({
-              where: { id: rolePermission.id, status:1 },
+              where: { id: rolePermission.id, status: 1 },
             });
             rolePermissionEntity.status = 0;
             rolePermissionEntity.updateDate = new Date();
@@ -149,12 +151,16 @@ export class RolesService {
   }
 
   async remove(id: number) {
-    let roleEntity = this.findOne(id);
+    let roleEntity = await this.findOne(id);
     if (roleEntity) {
-      let ret = await this.roleRepo.delete(id);
-      if (ret.affected === 1) {
-        return roleEntity;
-      }
+      roleEntity.updateDate = new Date();
+      roleEntity.status = 0;
+      await this.roleRepo.save(roleEntity);
+      return roleEntity;
+
+      // let ret = await this.roleRepo.delete(id);
+      // if (ret.affected === 1) {
+      // }
     }
     throw new NotFoundException('Record Not Found');
   }
